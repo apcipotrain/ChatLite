@@ -1,0 +1,76 @@
+--------------- 建表操作 ---------------
+-- 创建数据库
+CREATE DATABASE IF NOT EXISTS chatdb CHARACTER SET utf8mb4;
+USE chatdb;
+
+-- 用户表
+CREATE TABLE IF NOT EXISTS users (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    username VARCHAR(50) NOT NULL UNIQUE,
+    password VARCHAR(255) NOT NULL,
+    nickname VARCHAR(50),
+    phone VARCHAR(20)
+);
+
+-- 好友关系表
+CREATE TABLE IF NOT EXISTS friends (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    user VARCHAR(50) NOT NULL,
+    friend VARCHAR(50) NOT NULL,
+    CONSTRAINT fk_user FOREIGN KEY (user) REFERENCES users(username) ON DELETE CASCADE,
+    CONSTRAINT fk_friend FOREIGN KEY (friend) REFERENCES users(username) ON DELETE CASCADE
+);
+
+-- 私聊消息表
+CREATE TABLE IF NOT EXISTS messages (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    timestamp DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    sender VARCHAR(50) NOT NULL,
+    receiver VARCHAR(50) NOT NULL,
+    content TEXT NOT NULL,
+    CONSTRAINT fk_sender FOREIGN KEY (sender) REFERENCES users(username) ON DELETE CASCADE,
+    CONSTRAINT fk_receiver FOREIGN KEY (receiver) REFERENCES users(username) ON DELETE CASCADE
+);
+
+
+-- 群组表（记录群）
+CREATE TABLE IF NOT EXISTS groups (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    group_name VARCHAR(50) NOT NULL UNIQUE
+);
+
+-- 群成员表（记录群成员关系）
+CREATE TABLE IF NOT EXISTS group_members (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    group_id INT NOT NULL,
+    username VARCHAR(50) NOT NULL,
+    FOREIGN KEY (group_id) REFERENCES groups(id) ON DELETE CASCADE,
+    FOREIGN KEY (username) REFERENCES users(username) ON DELETE CASCADE
+);
+
+-- 群聊消息表（新版，带 group_id）
+CREATE TABLE IF NOT EXISTS group_messages (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    group_id INT NOT NULL,
+    timestamp DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    sender VARCHAR(50) NOT NULL,
+    content TEXT NOT NULL,
+    FOREIGN KEY (group_id) REFERENCES groups(id) ON DELETE CASCADE,
+    FOREIGN KEY (sender) REFERENCES users(username) ON DELETE CASCADE
+);
+--------------- 做完以上内容，还需要加这一句，实现离线接收未读消息 ---------------
+USE chatdb;
+
+-- 给 messages 表增加 is_read 字段，默认 0（未读）
+ALTER TABLE messages ADD COLUMN is_read TINYINT DEFAULT 0;
+
+--------------- 常用测试命令 ---------------
+打开数据库
+mysql -u root -p
+
+删表
+DROP TABLE group_messages;
+
+查看现状
+USE chatdb;
+SHOW TABLES;
