@@ -10,16 +10,8 @@
 ---
 
 ## 🚀 功能模块
-- 用户系统：注册、登录、找回密码
-- 好友管理与群聊管理
-- 私聊消息（未读消息支持）
-- 群聊消息（支持历史记录查询）
-- 聊天界面消息左右分栏（自己在右，对方在左）
-- 字体大小可自定义
-- 退出登录功能
-- 本地启动脚本：`Server.bat` 启动服务器，`ChatLite.bat` 启动客户端
 
-等我画一张图
+<img width="1626" height="761" alt="333e1cf4a3b8549f7aaa1b533bd1b055" src="https://github.com/user-attachments/assets/fee64677-2235-41e4-9870-429eb46c2033" />
 
 目前来说，
 最大的问题是：群聊暂时不支持离线推送未读消息。
@@ -33,6 +25,9 @@
    先启动 `Server.bat`
    再启动 `ChatLite.bat`
    不然没开服务器你怎么能直接跑客户端呢！！！
+3. 测试建议
+<img width="1694" height="837" alt="9d5a3d8e6fed242ef673c0ec5a3fefa4" src="https://github.com/user-attachments/assets/08eff8b1-fb98-4a0f-bc48-27e71781b64f" />
+
 
 ## 📂 项目结构
 
@@ -72,6 +67,9 @@
    - `get_unread_messages`：获取用户未读的私聊消息（离线消息补发）  
    - `mark_messages_read`：标记用户的私聊消息为已读  
    👉 功能定位：负责消息的落库、历史查询和未读状态管理。  
+
+**E-R图**
+<img width="1531" height="950" alt="4a1d3d538b392357e15c1a5fc90c15d0" src="https://github.com/user-attachments/assets/c7b61826-8998-473c-a86b-8f1cefcb0f81" />
 
 ---
 
