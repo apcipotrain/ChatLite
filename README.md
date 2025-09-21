@@ -27,6 +27,8 @@
    再启动 `ChatLite.bat`
    不然没开服务器你怎么能直接跑客户端呢！！！
 3. 测试建议
+   如下图
+   
 <img width="1694" height="837" alt="9d5a3d8e6fed242ef673c0ec5a3fefa4" src="https://github.com/user-attachments/assets/08eff8b1-fb98-4a0f-bc48-27e71781b64f" />
 
 
@@ -69,7 +71,8 @@
    - `mark_messages_read`：标记用户的私聊消息为已读  
    👉 功能定位：负责消息的落库、历史查询和未读状态管理。  
 
-**E-R图**
+E-R图如下
+
 <img width="1531" height="950" alt="4a1d3d538b392357e15c1a5fc90c15d0" src="https://github.com/user-attachments/assets/c7b61826-8998-473c-a86b-8f1cefcb0f81" />
 
 ---
