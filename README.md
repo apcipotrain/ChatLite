@@ -27,7 +27,8 @@
    再启动 `ChatLite.bat`
    不然没开服务器你怎么能直接跑客户端呢！！！
 3. 测试建议  
-   如下图
+   系统演示详见：https://www.bilibili.com/video/BV1TgWVz4ERj/
+   测试方法如下图
    
 <img width="1694" height="837" alt="9d5a3d8e6fed242ef673c0ec5a3fefa4" src="https://github.com/user-attachments/assets/08eff8b1-fb98-4a0f-bc48-27e71781b64f" />
 
